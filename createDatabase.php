@@ -2,12 +2,18 @@
 error_reporting(E_ALL); //This will report the errors if something happens.
 ini_set('display_errors', 1);
 	$DB_server = "localhost";
-	$DB_user = "shamilton66"; //Change to YOUR ivytech screen name
-	$DB_Name = "shamilton66_AJAX_DB"; //change your to YOUR ivytech screen name and add "_AJAX_DB"
+	$DB_user = "YOUR-IVY-TECH-USERNAME"; //Change to YOUR ivytech screen name
+	$DB_Name = "YOUR-IVY-TECH-USERNAME_AJAX_DB"; //change your to YOUR ivytech screen name and add "_AJAX_DB"
 	$DB_Conn = new mysqli($DB_server, $DB_user, $DB_user, $DB_Name);
 	echo 'Start DB work<br />';
 	if($DB_Conn->connect_error){
-		die("Connection failed: " . $DB_Conn->connect_error);
+		$DB_Conn= new mysqli($DB_server, $DB_user, $DB_user);
+		$SQL = "CREATE DATABASE $DB_Name";
+		if($DB_Conn->query($SQL) === True){
+			echo "Database $DB_Name successfully created.<br />";
+		} else {
+			die("Connection failed: " . $DB_Conn->connect_error);
+		}
 	} else {
 		echo "Database connected. <br /><br />";
 	}
